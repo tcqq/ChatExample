@@ -5,7 +5,7 @@ import android.view.View
 import com.example.chatexample.R
 import com.example.chatexample.enums.MessageBubbleType
 import com.example.chatexample.items.MessagesFooterItem
-import com.example.chatexample.items.MyMessagesItem
+import com.example.chatexample.items.MyMessagesItemKt
 import com.example.chatexample.utils.KeyboardUtils
 import com.jakewharton.rxbinding3.view.layoutChangeEvents
 import com.jakewharton.rxbinding3.widget.textChanges
@@ -23,7 +23,7 @@ import java.util.*
  * @author Alan Dreamer
  * @since 2019-05-25 Created
  */
-class ConversationActivity : RxAppCompatActivity(),
+class ConversationActivityKt : RxAppCompatActivity(),
     FlexibleAdapter.OnItemClickListener {
 
     private lateinit var adapter: FlexibleAdapter<IFlexible<*>>
@@ -51,7 +51,7 @@ class ConversationActivity : RxAppCompatActivity(),
                 val currentDate = sdf.format(Date())
                 adapter.addItem(
                     -1,
-                    MyMessagesItem(
+                    MyMessagesItemKt(
                         "${adapter.itemCount + 1}",
                         "${compose_message_text.text}",
                         currentDate,
@@ -102,7 +102,7 @@ class ConversationActivity : RxAppCompatActivity(),
     private fun getItems(): List<IFlexible<*>> {
         val items = arrayListOf<IFlexible<*>>()
         items.add(
-            MyMessagesItem(
+            MyMessagesItemKt(
                 "1",
                 "Hi tcqq! This is an automated reminder that your meeting with Mackenzie from Toptal starts in 30 minutes (at 9:00 pm).",
                 "2019-06-02 10:00:00",
@@ -110,7 +110,7 @@ class ConversationActivity : RxAppCompatActivity(),
             )
         )
         items.add(
-            MyMessagesItem(
+            MyMessagesItemKt(
                 "2",
                 "Thanks",
                 "2019-06-02 10:00:00",
@@ -118,7 +118,7 @@ class ConversationActivity : RxAppCompatActivity(),
             )
         )
         items.add(
-            MyMessagesItem(
+            MyMessagesItemKt(
                 "3",
                 "Hello",
                 "2019-06-02 10:00:00",

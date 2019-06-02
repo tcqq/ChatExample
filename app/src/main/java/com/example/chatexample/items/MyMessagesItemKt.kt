@@ -21,12 +21,12 @@ private const val MESSAGE_BUBBLE_RADIUS_SMALL = 4F
  * @author Alan Dreamer
  * @since 2019-05-30 Created
  */
-data class MyMessagesItem(
+data class MyMessagesItemKt(
     val id: String,
     val messageText: String,
     val date: String,
     val bubbleType: MessageBubbleType
-) : AbstractFlexibleItem<MyMessagesItem.ViewHolder>() {
+) : AbstractFlexibleItem<MyMessagesItemKt.ViewHolder>() {
 
     override fun getLayoutRes(): Int {
         return R.layout.item_my_messages
