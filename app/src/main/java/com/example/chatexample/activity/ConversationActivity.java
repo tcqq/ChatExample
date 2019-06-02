@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.chatexample.R;
 import com.example.chatexample.enums.MessageBubbleType;
 import com.example.chatexample.items.MessagesFooterItem;
-import com.example.chatexample.items.MyMessagesItemKt;
+import com.example.chatexample.items.MyMessagesItem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jakewharton.rxbinding3.view.RxView;
 import com.jakewharton.rxbinding3.widget.RxTextView;
@@ -68,7 +68,7 @@ public class ConversationActivity extends RxAppCompatActivity implements
                 String currentDate = sdf.format(new Date());
                 adapter.addItem(
                         -1,
-                        new MyMessagesItemKt(
+                        new MyMessagesItem(
                                 "${adapter.itemCount + 1}",
                                 "${compose_message_text.text}",
                                 currentDate,
@@ -123,7 +123,7 @@ public class ConversationActivity extends RxAppCompatActivity implements
     private List<IFlexible<?>> getItems() {
         ArrayList<IFlexible<?>> items = new ArrayList<>();
         items.add(
-                new MyMessagesItemKt(
+                new MyMessagesItem(
                         "1",
                         "Hi tcqq! This is an automated reminder that your meeting with Mackenzie from Toptal starts in 30 minutes (at 9:00 pm).",
                         "2019-06-02 10:00:00",
@@ -131,7 +131,7 @@ public class ConversationActivity extends RxAppCompatActivity implements
                 )
         );
         items.add(
-                new MyMessagesItemKt(
+                new MyMessagesItem(
                         "2",
                         "Thanks",
                         "2019-06-02 10:00:00",
@@ -139,7 +139,7 @@ public class ConversationActivity extends RxAppCompatActivity implements
                 )
         );
         items.add(
-                new MyMessagesItemKt(
+                new MyMessagesItem(
                         "3",
                         "Hello",
                         "2019-06-02 10:00:00",
