@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.chatexample.R;
 import com.example.chatexample.enums.MessageBubbleType;
 import com.example.chatexample.items.MessagesFooterItem;
+import com.example.chatexample.items.MessagesHeaderItem;
 import com.example.chatexample.items.MyMessagesItem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jakewharton.rxbinding3.view.RxView;
@@ -113,7 +114,8 @@ public class ConversationActivity extends RxAppCompatActivity implements
                 }).isDisposed();
 
         adapter.updateDataSet(getItems());
-        adapter.addScrollableFooter(new MessagesFooterItem("FI - 1"));
+        adapter.addScrollableFooter(new MessagesFooterItem("FI"));
+        adapter.addScrollableHeader(new MessagesHeaderItem("HI"));
     }
 
     @Override

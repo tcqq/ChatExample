@@ -5,6 +5,7 @@ import android.view.View
 import com.example.chatexample.R
 import com.example.chatexample.enums.MessageBubbleType
 import com.example.chatexample.items.MessagesFooterItem
+import com.example.chatexample.items.MessagesHeaderItem
 import com.example.chatexample.items.MyMessagesItemKt
 import com.example.chatexample.utils.KeyboardUtils
 import com.jakewharton.rxbinding3.view.layoutChangeEvents
@@ -90,7 +91,8 @@ class ConversationActivityKt : RxAppCompatActivity(),
         }
 
         adapter.updateDataSet(getItems())
-        adapter.addScrollableFooter(MessagesFooterItem("FI - 1"))
+        adapter.addScrollableFooter(MessagesFooterItem("FI"))
+        adapter.addScrollableHeader(MessagesHeaderItem("HI"))
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
