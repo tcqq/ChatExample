@@ -82,6 +82,7 @@ public class ConversationActivity extends RxAppCompatActivity implements
 
         adapter = new FlexibleAdapter<>(null, this, true);
         SmoothScrollLinearLayoutManager layoutManager = new SmoothScrollLinearLayoutManager(this);
+        layoutManager.setStackFromEnd(true);
         message_list.setLayoutManager(layoutManager);
         message_list.setAdapter(adapter);
         message_list.setHasFixedSize(true);

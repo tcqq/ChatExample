@@ -65,6 +65,7 @@ class ConversationActivityKt : RxAppCompatActivity(),
 
         adapter = FlexibleAdapter(null, this, true)
         val layoutManager = SmoothScrollLinearLayoutManager(this)
+        layoutManager.stackFromEnd = true
         message_list.layoutManager = layoutManager
         message_list.adapter = adapter
         message_list.setHasFixedSize(true)
