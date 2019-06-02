@@ -1,0 +1,19 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+
+        <!-- Widget styles -->
+        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Primary</item>
+        <item name="floatingActionButtonStyle">@style/FloatingActionButton</item>
+    </style>
+
+    <style name="FloatingActionButton" parent="@style/Widget.MaterialComponents.FloatingActionButton">
+        <item name="tint">@color/theme_white</item>
+    </style>
+
+</resources>

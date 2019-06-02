@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="96dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="4dp">
+
+    <com.github.florent37.shapeofview.shapes.RoundRectView
+        android:id="@+id/message_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shape_roundRect_bottomLeftRadius="24dp"
+        app:shape_roundRect_bottomRightRadius="24dp"
+        app:shape_roundRect_topLeftRadius="24dp"
+        app:shape_roundRect_topRightRadius="24dp">
+
+        <FrameLayout
+            android:id="@+id/message_text_and_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="8dp"
+            tools:background="@color/theme_light_white">
+
+            <androidx.emoji.widget.EmojiAppCompatTextView
+                android:id="@+id/message_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="?attr/colorSecondary"
+                tools:text="Hi tcqq! This is an automated reminder that your meeting with Mackenzie from Toptal starts in 30 minutes (at 9:00 pm)." />
+
+        </FrameLayout>
+
+    </com.github.florent37.shapeofview.shapes.RoundRectView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
