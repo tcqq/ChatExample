@@ -5,5 +5,5 @@ package com.example.chatexample.enums
  * @since 2019-06-02 Created
  */
 enum class MessageBubbleType {
-    TOP, MIDDLE, BOTTOM, SINGLE
+    HEADER, BODY, FOOTER, SINGLE
 }

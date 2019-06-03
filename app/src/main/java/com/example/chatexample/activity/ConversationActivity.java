@@ -5,15 +5,15 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.emoji.widget.EmojiAppCompatEditText;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.chatexample.R;
-import com.example.chatexample.enums.MessageBubbleType;
 import com.example.chatexample.items.MessagesFooterItem;
 import com.example.chatexample.items.MessagesHeaderItem;
-import com.example.chatexample.items.MyMessagesItem;
+import com.example.chatexample.items.MyMessagesTextItem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jakewharton.rxbinding3.view.RxView;
 import com.jakewharton.rxbinding3.widget.RxTextView;
@@ -38,6 +38,8 @@ public class ConversationActivity extends RxAppCompatActivity implements
 
     private FlexibleAdapter<IFlexible<?>> adapter;
 
+    RecyclerView message_list;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +52,7 @@ public class ConversationActivity extends RxAppCompatActivity implements
 
         EmojiAppCompatEditText compose_message_text = findViewById(R.id.compose_message_text);
         FloatingActionButton voice_note_button = findViewById(R.id.voice_note_button);
-        RecyclerView message_list = findViewById(R.id.message_list);
+        message_list = findViewById(R.id.message_list);
 
         RxTextView
                 .textChanges(compose_message_text)
@@ -69,11 +71,10 @@ public class ConversationActivity extends RxAppCompatActivity implements
                 String currentDate = sdf.format(new Date());
                 adapter.addItem(
                         -1,
-                        new MyMessagesItem(
-                                "${adapter.itemCount + 1}",
-                                "${compose_message_text.text}",
-                                currentDate,
-                                MessageBubbleType.SINGLE
+                        new MyMessagesTextItem(
+                                String.valueOf(adapter.getItemCount() + 1),
+                                String.valueOf(compose_message_text.getText()),
+                                currentDate
                         )
                 );
                 adapter.smoothScrollToPosition(adapter.getItemCount() - 1);
@@ -120,33 +121,43 @@ public class ConversationActivity extends RxAppCompatActivity implements
 
     @Override
     public boolean onItemClick(View view, int position) {
+        if (position != adapter.getItemCount() - 1 && position != 0) {
+            Toast.makeText(this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+            if (message_list.findViewHolderForAdapterPosition(position) instanceof MyMessagesTextItem.ViewHolder) {
+                MyMessagesTextItem.ViewHolder viewHolder = (MyMessagesTextItem.ViewHolder) message_list.findViewHolderForAdapterPosition(position);
+                if (viewHolder != null) {
+                    if (viewHolder.messageStatus.getVisibility() == View.VISIBLE) {
+                        viewHolder.messageStatus.setVisibility(View.GONE);
+                    } else {
+                        viewHolder.messageStatus.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        }
         return false;
     }
 
     private List<IFlexible<?>> getItems() {
         ArrayList<IFlexible<?>> items = new ArrayList<>();
         items.add(
-                new MyMessagesItem(
+                new MyMessagesTextItem(
                         "1",
                         "Hi tcqq! This is an automated reminder that your meeting with Mackenzie from Toptal starts in 30 minutes (at 9:00 pm).",
-                        "2019-06-02 10:00:00",
-                        MessageBubbleType.TOP
+                        "2019-06-02 10:00:00"
                 )
         );
         items.add(
-                new MyMessagesItem(
+                new MyMessagesTextItem(
                         "2",
                         "Thanks",
-                        "2019-06-02 10:00:00",
-                        MessageBubbleType.MIDDLE
+                        "2019-06-02 10:00:00"
                 )
         );
         items.add(
-                new MyMessagesItem(
+                new MyMessagesTextItem(
                         "3",
                         "Hello",
-                        "2019-06-02 10:00:00",
-                        MessageBubbleType.BOTTOM
+                        "2019-06-02 10:00:00"
                 )
         );
         return items;

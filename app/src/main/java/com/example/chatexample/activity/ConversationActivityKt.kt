@@ -2,11 +2,12 @@ package com.example.chatexample.activity
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.core.view.isVisible
 import com.example.chatexample.R
-import com.example.chatexample.enums.MessageBubbleType
 import com.example.chatexample.items.MessagesFooterItem
 import com.example.chatexample.items.MessagesHeaderItem
-import com.example.chatexample.items.MyMessagesItemKt
+import com.example.chatexample.items.MyMessagesTextItemKt
 import com.example.chatexample.utils.KeyboardUtils
 import com.jakewharton.rxbinding3.view.layoutChangeEvents
 import com.jakewharton.rxbinding3.widget.textChanges
@@ -52,11 +53,10 @@ class ConversationActivityKt : RxAppCompatActivity(),
                 val currentDate = sdf.format(Date())
                 adapter.addItem(
                     -1,
-                    MyMessagesItemKt(
+                    MyMessagesTextItemKt(
                         "${adapter.itemCount + 1}",
                         "${compose_message_text.text}",
-                        currentDate,
-                        MessageBubbleType.SINGLE
+                        currentDate
                     )
                 )
                 adapter.smoothScrollToPosition(adapter.itemCount - 1)
@@ -96,36 +96,38 @@ class ConversationActivityKt : RxAppCompatActivity(),
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
-/*        if (position != adapter.itemCount - 1) {
+        if (position != adapter.itemCount - 1 && position != 0) {
             Toast.makeText(this, "$position", Toast.LENGTH_SHORT).show()
-        }*/
+            when (val viewHolder = message_list.findViewHolderForAdapterPosition(position)) {
+                is MyMessagesTextItemKt.ViewHolder -> {
+                    viewHolder.messageStatus.isVisible = !viewHolder.messageStatus.isVisible
+                }
+            }
+        }
         return false
     }
 
     private fun getItems(): List<IFlexible<*>> {
         val items = arrayListOf<IFlexible<*>>()
         items.add(
-            MyMessagesItemKt(
+            MyMessagesTextItemKt(
                 "1",
                 "Hi tcqq! This is an automated reminder that your meeting with Mackenzie from Toptal starts in 30 minutes (at 9:00 pm).",
-                "2019-06-02 10:00:00",
-                MessageBubbleType.TOP
+                "2019-06-02 10:00:00"
             )
         )
         items.add(
-            MyMessagesItemKt(
+            MyMessagesTextItemKt(
                 "2",
                 "Thanks",
-                "2019-06-02 10:00:00",
-                MessageBubbleType.MIDDLE
+                "2019-06-02 10:00:00"
             )
         )
         items.add(
-            MyMessagesItemKt(
+            MyMessagesTextItemKt(
                 "3",
                 "Hello",
-                "2019-06-02 10:00:00",
-                MessageBubbleType.BOTTOM
+                "2019-06-02 10:00:00"
             )
         )
         return items
