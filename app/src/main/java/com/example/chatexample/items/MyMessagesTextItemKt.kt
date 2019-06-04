@@ -76,6 +76,8 @@ data class MyMessagesTextItemKt(
                         } else {
                             setBubbleType(holder, MessageBubbleType.HEADER)
                         }
+                    } else {
+                        setBubbleType(holder, MessageBubbleType.SINGLE)
                     }
                 }
             } else {

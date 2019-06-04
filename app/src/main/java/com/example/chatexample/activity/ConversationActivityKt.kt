@@ -8,8 +8,7 @@ import com.example.chatexample.R
 import com.example.chatexample.items.MessagesFooterItem
 import com.example.chatexample.items.MessagesHeaderItem
 import com.example.chatexample.items.MyMessagesTextItemKt
-import com.example.chatexample.utils.KeyboardUtils
-import com.jakewharton.rxbinding3.view.layoutChangeEvents
+import com.example.chatexample.utils.RecyclerViewUtils
 import com.jakewharton.rxbinding3.widget.textChanges
 import com.trello.rxlifecycle3.android.ActivityEvent
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity
@@ -60,6 +59,7 @@ class ConversationActivityKt : RxAppCompatActivity(),
                     )
                 )
                 adapter.smoothScrollToPosition(adapter.itemCount - 1)
+                adapter.notifyDataSetChanged()
                 compose_message_text.text!!.clear()
             }
         }
@@ -70,26 +70,7 @@ class ConversationActivityKt : RxAppCompatActivity(),
         message_list.layoutManager = layoutManager
         message_list.adapter = adapter
         message_list.setHasFixedSize(true)
-
-        message_list
-            .layoutChangeEvents()
-            .compose(bindUntilEvent(ActivityEvent.DESTROY))
-            .subscribe {
-                //FIXME: 打开和关闭键盘不会导致列表的位置发生改变
-                message_list.scrollToPosition(adapter.itemCount - 1)
-/*                if (it.bottom < it.oldBottom) {
-                    Timber.d("bottom: ${it.bottom} oldBottom: ${it.oldBottom}")
-                    message_list.scrollBy(0, it.oldBottom - it.bottom)
-                }*/
-            }.isDisposed
-
-
-        message_list.setOnTouchListener { _, _ ->
-            //FIXME: 只有向下滑动时才会关闭键盘
-            KeyboardUtils.hideKeyboard(this)
-            false
-        }
-
+        RecyclerViewUtils.initMessageList(message_list, layoutManager, adapter, this)
         adapter.updateDataSet(getItems())
         adapter.addScrollableFooter(MessagesFooterItem("FI"))
         adapter.addScrollableHeader(MessagesHeaderItem("HI"))

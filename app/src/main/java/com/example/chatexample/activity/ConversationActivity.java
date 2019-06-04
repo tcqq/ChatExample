@@ -1,10 +1,8 @@
 package com.example.chatexample.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -14,8 +12,8 @@ import com.example.chatexample.R;
 import com.example.chatexample.items.MessagesFooterItem;
 import com.example.chatexample.items.MessagesHeaderItem;
 import com.example.chatexample.items.MyMessagesTextItem;
+import com.example.chatexample.utils.RecyclerViewUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.jakewharton.rxbinding3.view.RxView;
 import com.jakewharton.rxbinding3.widget.RxTextView;
 import com.trello.rxlifecycle3.android.ActivityEvent;
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
@@ -37,8 +35,7 @@ public class ConversationActivity extends RxAppCompatActivity implements
         FlexibleAdapter.OnItemClickListener {
 
     private FlexibleAdapter<IFlexible<?>> adapter;
-
-    RecyclerView message_list;
+    private RecyclerView message_list;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,6 +75,7 @@ public class ConversationActivity extends RxAppCompatActivity implements
                         )
                 );
                 adapter.smoothScrollToPosition(adapter.getItemCount() - 1);
+                adapter.notifyDataSetChanged();
                 compose_message_text.setText("");
             }
         });
@@ -88,32 +86,7 @@ public class ConversationActivity extends RxAppCompatActivity implements
         message_list.setLayoutManager(layoutManager);
         message_list.setAdapter(adapter);
         message_list.setHasFixedSize(true);
-
-        RxView
-                .layoutChangeEvents(message_list)
-                .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .subscribe(viewLayoutChangeEvent -> {
-                    //FIXME: 打开和关闭键盘不会导致列表的位置发生改变
-                    message_list.scrollToPosition(adapter.getItemCount() - 1);
-/*                  if (it.bottom < it.oldBottom) {
-                        Timber.d("bottom: ${it.bottom} oldBottom: ${it.oldBottom}")
-                        message_list.scrollBy(0, it.oldBottom - it.bottom)
-                    }*/
-                }).isDisposed();
-
-        RxView
-                .touches(message_list)
-                .subscribe(motionEvent -> {
-                    //FIXME: 只有向下滑动时才会关闭键盘
-                    View view = getCurrentFocus();
-                    if (view != null) {
-                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        if (imm != null) {
-                            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                        }
-                    }
-                }).isDisposed();
-
+        RecyclerViewUtils.INSTANCE.initMessageList(message_list, layoutManager, adapter, this);
         adapter.updateDataSet(getItems());
         adapter.addScrollableFooter(new MessagesFooterItem("FI"));
         adapter.addScrollableHeader(new MessagesHeaderItem("HI"));

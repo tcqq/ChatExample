@@ -72,4 +72,6 @@ dependencies {
 
     //为任何Android视图提供自定义形状 - https://github.com/florent37/ShapeOfView
     implementation 'com.github.florent37:shapeofview:1.4.7'
+    //一个具有小型可扩展API的记录器 - https://github.com/JakeWharton/timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }

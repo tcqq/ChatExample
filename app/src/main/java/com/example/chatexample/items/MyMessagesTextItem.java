@@ -92,6 +92,8 @@ public class MyMessagesTextItem extends AbstractFlexibleItem<MyMessagesTextItem.
                         } else {
                             setBubbleType(holder, MessageBubbleType.HEADER);
                         }
+                    } else {
+                        setBubbleType(holder, MessageBubbleType.SINGLE);
                     }
                 }
             } else {
