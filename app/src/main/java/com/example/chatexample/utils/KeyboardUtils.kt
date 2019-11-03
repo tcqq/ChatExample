@@ -11,7 +11,7 @@ import androidx.annotation.NonNull
 
 
 /**
- * @author Alan Dreamer
+ * @author Alan Perry
  * @since 2018/06/02 Created
  */
 object KeyboardUtils {

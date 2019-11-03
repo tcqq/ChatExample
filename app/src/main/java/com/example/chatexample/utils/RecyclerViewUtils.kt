@@ -12,7 +12,7 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import timber.log.Timber
 
 /**
- * @author Alan Dreamer
+ * @author Alan Perry
  * @since 2019-06-04 Created
  */
 object RecyclerViewUtils {

@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * @author Alan Dreamer
+ * @author Alan Perry
  * @since 2019-06-02 Created
  */
 public class ConversationActivity extends RxAppCompatActivity implements

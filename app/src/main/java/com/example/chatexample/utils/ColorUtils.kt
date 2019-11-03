@@ -7,7 +7,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.NonNull
 
 /**
- * @author Alan Dreamer
+ * @author Alan Perry
  * @since 2018/07/22 Created
  */
 object ColorUtils {

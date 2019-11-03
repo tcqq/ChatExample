@@ -5,7 +5,7 @@ import androidx.emoji.bundled.BundledEmojiCompatConfig
 import androidx.emoji.text.EmojiCompat
 
 /**
- * @author Alan Dreamer
+ * @author Alan Perry
  * @since 2019-06-02 Created
  */
 class App : Application() {

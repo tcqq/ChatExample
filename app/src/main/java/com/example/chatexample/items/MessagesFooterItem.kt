@@ -9,7 +9,7 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 
 /**
- * @author Alan Dreamer
+ * @author Alan Perry
  * @since 2019-05-30 Created
  */
 data class MessagesFooterItem(

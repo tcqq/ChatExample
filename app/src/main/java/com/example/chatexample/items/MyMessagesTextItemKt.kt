@@ -20,7 +20,7 @@ private const val MESSAGE_BUBBLE_RADIUS_LARGE = 24F
 private const val MESSAGE_BUBBLE_RADIUS_SMALL = 4F
 
 /**
- * @author Alan Dreamer
+ * @author Alan Perry
  * @since 2019-05-30 Created
  */
 data class MyMessagesTextItemKt(
