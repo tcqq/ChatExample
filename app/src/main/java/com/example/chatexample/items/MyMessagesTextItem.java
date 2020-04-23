@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * @author Alan Perry
+ * @author Perry Lance
  * @since 2019-06-02 Created
  */
 public class MyMessagesTextItem extends AbstractFlexibleItem<MyMessagesTextItem.ViewHolder> {

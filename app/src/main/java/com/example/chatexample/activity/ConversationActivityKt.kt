@@ -21,7 +21,7 @@ import java.util.*
 
 
 /**
- * @author Alan Perry
+ * @author Perry Lance
  * @since 2019-05-25 Created
  */
 class ConversationActivityKt : RxAppCompatActivity(),

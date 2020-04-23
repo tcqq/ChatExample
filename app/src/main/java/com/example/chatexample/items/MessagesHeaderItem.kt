@@ -9,7 +9,7 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 
 /**
- * @author Alan Perry
+ * @author Perry Lance
  * @since 2019-06-02 Created
  */
 data class MessagesHeaderItem(
